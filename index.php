@@ -75,8 +75,26 @@
 					data: {f0:f0, f1:f1, f2:f2, f3:f3, f4:f4, f5:f5, f6:f6, f7:f7, f8:f8, f9:f9}
 				}).done(function( result ) {
 					$("#msg").html( " Query result: " + result );
-					$("#p0, p1, p2, p3, p4, p5, p6, p7, p8, p9")[0].pause();
-					$("#p0, p1, p2, p3, p4, p5, p6, p7, p8, p9")[0].load();
+					$("#p0")[0].pause();
+					$("#p0")[0].load();
+					$("#p1")[0].pause();
+					$("#p1")[0].load();
+					$("#p2")[0].pause();
+					$("#p2")[0].load();
+					$("#p3")[0].pause();
+					$("#p3")[0].load();
+					$("#p4")[0].pause();
+					$("#p4")[0].load();
+					$("#p5")[0].pause();
+					$("#p5")[0].load();
+					$("#p6")[0].pause();
+					$("#p6")[0].load();
+					$("#p7")[0].pause();
+					$("#p7")[0].load();
+					$("#p8")[0].pause();
+					$("#p8")[0].load();
+					$("#p9")[0].pause();
+					$("#p9")[0].load();
 				});
 			}
 		</script>
