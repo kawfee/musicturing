@@ -59,6 +59,8 @@
 
 	setSession($songs);
 
+	print_r($_POST['data']);
+	print_r('<hr>');
 	print_r($_SESSION['data']);
 
 ?>

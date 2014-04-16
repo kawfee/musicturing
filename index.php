@@ -58,21 +58,29 @@
 		<title>Musical Turing Test</title>
 		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 		<script>
+			$(function(){
+				$("audio").on("play", function() {
+					$("audio").not(this).each(function(index, audio) {
+						audio.pause();
+					});
+				});
+			});
 			function submitQuiz(){
-				var f0 = $('#f0').val();
-				var f1 = $('#f1').val();
-				var f2 = $('#f2').val();
-				var f3 = $('#f3').val();
-				var f4 = $('#f4').val();
-				var f5 = $('#f5').val();
-				var f6 = $('#f6').val();
-				var f7 = $('#f7').val();
-				var f8 = $('#f8').val();
-				var f9 = $('#f9').val();
+				var data = new Array();
+				data[0] = $('#f0').val();
+				data[1] = $('#f1').val();
+				data[2] = $('#f2').val();
+				data[3] = $('#f3').val();
+				data[4] = $('#f4').val();
+				data[5] = $('#f5').val();
+				data[6] = $('#f6').val();
+				data[7] = $('#f7').val();
+				data[8] = $('#f8').val();
+				data[9] = $('#f9').val();
 				$.ajax({
 					type: "POST",
 					url: "ajax.php",
-					data: {f0:f0, f1:f1, f2:f2, f3:f3, f4:f4, f5:f5, f6:f6, f7:f7, f8:f8, f9:f9}
+					data: {data:data}
 				}).done(function( result ) {
 					$("#msg").html( " Query result: " + result );
 					$("#p0")[0].pause();
@@ -107,8 +115,8 @@
 						<source src="audio.php?id=' . $i . '">
 					  </audio>
 					  <select id="f' . $i .'">
-					  	<option value="0">Bach Original</option>
-					  	<option value="1">Computer Generated</option>
+						<option value="0">Bach Original</option>
+						<option value="1">Computer Generated</option>
 					  </select></li>';
 			}
 		?>
