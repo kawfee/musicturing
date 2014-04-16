@@ -2,6 +2,7 @@
 
 	session_start();
 
+	//Array of all songs to be possibly loaded
 	$songs = array(
 		'e' => array(
 			'007607b_',

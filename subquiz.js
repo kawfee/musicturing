@@ -1,11 +1,11 @@
-$(function(){
+$(function() {
 	$("audio").on("play", function() {
 		$("audio").not(this).each(function(index, audio) {
 			audio.pause();
 		});
 	});
 });
-function submitQuiz(){
+function submitQuiz() {
 	var data = new Array();
 	data[0] = $('#f0').val();
 	data[1] = $('#f1').val();
@@ -25,19 +25,35 @@ function submitQuiz(){
 		var sum = 0;
 		$.each(data.wrong,function(){sum+=parseFloat(this) || 0;});
 		if(sum > 0) {
-			$("#msg").html(data.wrong);
+			$("#msg").html("Score: "+(10-sum)+"/"+10+" correct!");
 		} else {
 			$("#msg").html("Great job!");
 		}
-		for(i=0; i<10;i++){
-			$("audio")[i].pause();
-			$("audio")[i].load();
+		for(i=0; i<10;i++) {
 			if(data.wrong[i] == 1) {
 				$("#i"+i).attr("src", "wrong.png");
 			} else {
 				$("#i"+i).attr("src", "right.png");
 			}
-			$("#i"+i).css("display", "inline");
+			$("#i"+i).fadeIn(i*100);
 		}
+		$("#click").attr("onClick", "resetQuiz()");
+		$("#click").attr("value", "Reset");
+	});
+}
+function resetQuiz() {
+	$.ajax({
+		type: "GET",
+		url: "reset.php"
+	}).done(function() {
+		$("#msg").html("");
+		for(i=0; i<10;i++){
+			$("audio")[i].pause();
+			$("audio")[i].load();
+			$("#i"+i).fadeOut(i*100);
+			$("#f"+i).val('');
+		}
+		$("#click").attr("onClick", "submitQuiz()");
+		$("#click").attr("value", "Vote");
 	});
 }

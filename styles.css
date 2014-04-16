@@ -1,0 +1,38 @@
+body {
+	margin:0;
+}
+
+li, li audio, li select {
+	float:left;
+}
+
+ul {
+	float:left;
+	padding:0;
+	margin:0;
+}
+
+li {
+	margin:7px 0 7px 0;
+}
+
+li img {
+	height:20px;
+	width:20px;
+	display:none;
+	margin:5px 10px 5px 10px;
+}
+
+li audio {
+	margin:0 10px 0 0;
+}
+
+li select {
+	height:30px;
+	border-radius:5px;
+	margin:0 10px 0 10px;
+}
+
+.cf {
+	clear:both;
+}

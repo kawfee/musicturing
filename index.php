@@ -14,26 +14,20 @@
 		<title>Musical Turing Test</title>
 		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 		<script src="subquiz.js"></script>
-		<style>
-			img {
-				height:15px;
-				width:15px;
-				display:none;
-			}
-		</style>
+		<link href="styles.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
-		<h4>Musical Turing Test</h4>
-		<h1>Song List</h1>
-		<ol>
+		<h1>Musical Turing Test</h1>
+		<h2>Song List</h2>
+		<ul class="cf">
 		<?php
 			for($i = 0; $i < 10; $i++) {
-				echo '<li>
+				echo '<li class="cf">
 						<audio id="p' . $i . '" controls>
 						  <source src="audio.php?id=' . $i . '">
 						</audio>
 						<select id="f' . $i .'" tabindex="' . $i . 1 . '">
-						  <option selected disabled>-- Select Artist -- </option>
+						  <option value="" selected disabled>-- Select Artist -- </option>
 						  <option value="b">Bach</option>
 						  <option value="e">EMI</option>
 						</select>
@@ -41,8 +35,8 @@
 					  </li>';
 			}
 		?>
-		</ol>
+		</ul>
+		<p class="cf"><input type="submit" onClick="submitQuiz()" id="click" value="Vote"></p>
 		<p id="msg"></p>
-		<input type="submit" onClick="submitQuiz()" value="Vote">
 	</body>
 </html>
