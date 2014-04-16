@@ -1,50 +1,6 @@
 <?php
 
-	session_start();
-
-	$songs = array(
-		'e' => array(
-			'007607b_',
-			'018506b_',
-			'028300b_',
-			'037300b_',
-			'040900bv',
-			'066000b_',
-		),
-		'b' => array(
-			'bach-138',
-			'bach-207',
-			'bach-272',
-			'bach-329',
-			'bach-380',
-			'bach-470',
-		),
-	);
-
-	function randNum($min, $max, $quantity) {
-		$numbers = range($min, $max);
-		shuffle($numbers);
-		return array_slice($numbers, 0, $quantity);
-	}
-
-	function setSession($songs) {
-		$eCount = rand(4,6);
-		$bCount = 10 - $eCount;
-		$eValues = randNum(0, sizeof($songs['e']) - 1, $eCount);
-		$bValues = randNum(0, sizeof($songs['b']) - 1, $bCount);
-		$values = array();
-		$i = 0;
-		foreach($eValues as $key) {
-			$values[$i] = array($songs['e'][$key], 'e');
-			$i++;
-		}
-		foreach($bValues as $key) {
-			$values[$i] = array($songs['b'][$key], 'b');
-			$i++;
-		}
-		shuffle($values);
-		$_SESSION['data'] = $values;
-	}
+	include 'setSession.php';
 
 	if(empty($_SESSION['data'])) {
 		setSession($songs);
@@ -81,8 +37,14 @@
 					type: "POST",
 					url: "ajax.php",
 					data: {data:data}
-				}).done(function( result ) {
-					$("#msg").html( " Query result: " + result );
+				}).done(function(data) {
+					var sum = 0;
+					$.each(data.wrong,function(){sum+=parseFloat(this) || 0;});
+					if(sum > 0) {
+						$("#msg").html(data.wrong);
+					} else {
+						$("#msg").html("Great job!");
+					}
 					$("#p0")[0].pause();
 					$("#p0")[0].load();
 					$("#p1")[0].pause();
@@ -108,20 +70,25 @@
 		</script>
 	</head>
 	<body>
+		<h4>Musical Turing Test</h4>
+		<h1>Song List</h1>
 		<ol>
 		<?php
 			for($i = 0; $i < 10; $i++) {
-				echo '<li><audio id="p' . $i . '" controls>
-						<source src="audio.php?id=' . $i . '">
-					  </audio>
-					  <select id="f' . $i .'">
-						<option value="0">Bach Original</option>
-						<option value="1">Computer Generated</option>
-					  </select></li>';
+				echo '<li>
+						<audio id="p' . $i . '" controls>
+						  <source src="audio.php?id=' . $i . '">
+						</audio>
+						<select id="f' . $i .'" tabindex="' . $i . 1 . '">
+						  <option selected disabled>-- Select Artist -- </option>
+						  <option value="b">Bach</option>
+						  <option value="e">EMI</option>
+						</select>
+					  </li>';
 			}
 		?>
 		</ol>
 		<p id="msg"></p>
-		<input type="submit" onClick="submitQuiz()" value="Submit">
+		<input type="submit" onClick="submitQuiz()" value="Vote">
 	</body>
 </html>
