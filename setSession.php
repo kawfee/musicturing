@@ -1,5 +1,4 @@
 <?php
-
 	session_start();
 
 	//Array of all songs to be possibly loaded
@@ -45,6 +44,5 @@
 		}
 		shuffle($values);
 		$_SESSION['data'] = $values;
-	}	
-
+	}
 ?>

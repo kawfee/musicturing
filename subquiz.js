@@ -30,7 +30,7 @@ function submitQuiz() {
 			$("#msg").html("Great job!");
 		}
 		for(i=0; i<10;i++) {
-			if(data.wrong[i] == 1) {
+			if(data.wrong[i]==1) {
 				$("#i"+i).attr("src", "wrong.png");
 			} else {
 				$("#i"+i).attr("src", "right.png");
@@ -38,7 +38,7 @@ function submitQuiz() {
 			$("#i"+i).fadeIn(i*100);
 		}
 		$("#click").attr("onClick", "resetQuiz()");
-		$("#click").attr("value", "Reset");
+		$("#click").html("Reset");
 	});
 }
 function resetQuiz() {
@@ -54,6 +54,6 @@ function resetQuiz() {
 			$("#f"+i).val('');
 		}
 		$("#click").attr("onClick", "submitQuiz()");
-		$("#click").attr("value", "Vote");
+		$("#click").html("Vote");
 	});
 }
