@@ -16,12 +16,12 @@
 		}
 
 		//send number correct to database
-		/*$con = mysqli_connect('localhost','root','mysql','ajax');
+		$con = mysqli_connect('localhost','root','mysql','ajax');
 		if (mysqli_connect_errno()) {
 			echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
 		mysqli_query($con,"INSERT INTO results (data) VALUES ($rightCount)");
-		mysqli_close($con);*/
+		mysqli_close($con);
 
 		echo json_encode($response_array);
 	}
