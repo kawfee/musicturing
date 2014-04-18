@@ -1,57 +1,60 @@
-$(function() {
+$(document).ready(function() {
+	$("#msg").hide();
 	$("audio").on("play", function() {
 		$("audio").not(this).each(function(index, audio) {
 			audio.pause();
 		});
 	});
 });
+
 function submitQuiz() {
-	var data = new Array();
-	data[0] = $('input:radio[name=f0]:checked').val();
-	data[1] = $('input:radio[name=f1]:checked').val();
-	data[2] = $('input:radio[name=f2]:checked').val();
-	data[3] = $('input:radio[name=f3]:checked').val();
-	data[4] = $('input:radio[name=f4]:checked').val();
-	data[5] = $('input:radio[name=f5]:checked').val();
-	data[6] = $('input:radio[name=f6]:checked').val();
-	data[7] = $('input:radio[name=f7]:checked').val();
-	data[8] = $('input:radio[name=f8]:checked').val();
-	data[9] = $('input:radio[name=f9]:checked').val();
-	$.ajax({
-		type: "POST",
-		url: "ajax.php",
-		data: {data:data}
-	}).done(function(data) {
-		$('input:radio').attr('disabled', 'disabled');
-		var sum = 0;
-		$.each(data.wrong,function(){sum+=parseFloat(this) || 0;});
-		$("#msg").html("Score: "+(10-sum)+"/"+10+" correct!");
-		for(i=0; i<10;i++) {
-			if(data.wrong[i]==1) {
-				$("#i"+i).attr("src", "wrong.png");
-			} else {
-				$("#i"+i).attr("src", "right.png");
+	var data = new Array(
+		$('input:radio[name=f0]:checked').val(),
+		$('input:radio[name=f1]:checked').val(),
+		$('input:radio[name=f2]:checked').val(),
+		$('input:radio[name=f3]:checked').val(),
+		$('input:radio[name=f4]:checked').val(),
+		$('input:radio[name=f5]:checked').val(),
+		$('input:radio[name=f6]:checked').val(),
+		$('input:radio[name=f7]:checked').val(),
+		$('input:radio[name=f8]:checked').val(),
+		$('input:radio[name=f9]:checked').val());
+	if($.grep(data, function(elem){ return elem === undefined;}).length < 1) {
+		$.ajax({
+			type: "POST",
+			url: "ajax.php",
+			data: {data:data}
+		}).done(function(data) {
+			$('input:radio').attr('disabled', 'disabled');
+			var sum = 0;
+			$.each(data.wrong,function(){sum+=parseFloat(this) || 0;});
+			$("#msg").fadeOut().delay(900).queue(function(n){$(this).html("Score: "+(10-sum)+"/10 correct!");n();}).fadeIn();
+			for(i=0; i<10;i++) {
+				if(data.wrong[i]==1) {
+					$("#i"+i).attr("src", "wrong.png");
+				} else {
+					$("#i"+i).attr("src", "right.png");
+				}
+				$("#i"+i).delay(i*100).fadeIn();
 			}
-			$("#i"+i).fadeIn(i*100);
-		}
-		$("#click").attr("onClick", "resetQuiz()");
-		$("#click").html("Reset");
-	});
+			$("#click").html("Processing...").attr("onClick", "").delay(900).queue(function(n){$(this).attr("onClick", "resetQuiz()");$(this).html("Reset");n();});
+		});
+	} else {
+		$("#msg").fadeOut().html("Please try again. Make sure each question is answered.").fadeIn();
+	}
 }
 function resetQuiz() {
 	$.ajax({
 		type: "GET",
 		url: "reset.php"
 	}).done(function() {
-		$('input:radio').removeAttr('checked');
-		$('input:radio').removeAttr('disabled');
-		$("#msg").html("");
+		$('input:radio').removeAttr('checked').removeAttr('disabled');
+		$("#msg").delay(900).fadeOut().queue(function(n){$(this).html("");n();});
 		for(i=0; i<10;i++){
 			$("audio")[i].pause();
 			$("audio")[i].load();
-			$("#i"+i).fadeOut(i*100);
+			$("#i"+i).delay(i*100).fadeOut();
 		}
-		$("#click").attr("onClick", "submitQuiz()");
-		$("#click").html("Vote");
+		$("#click").html("Resetting...").attr("onClick", "").delay(900).queue(function(n){$(this).attr("onClick", "submitQuiz()");$(this).html("Vote");n();});
 	});
 }
