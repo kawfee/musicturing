@@ -22,17 +22,20 @@
 			<?php
 				for($i = 0; $i < 10; $i++) {
 					echo '<li class="cf">
-							<audio id="p' . $i . '" controls>
-							  <source src="audio.php?id=' . $i . '">
-							  Your browser does not support the audio element for wav files
-							</audio>
-							<select id="f' . $i .'" tabindex="' . $i . 1 . '">
-							  <option value="" selected disabled>-- Select Artist -- </option>
-							  <option value="b">Bach</option>
-							  <option value="e">EMI</option>
-							</select>
-							<img id="i' . $i . '"></img>
-						  </li>';
+									<audio id="p' . $i . '" controls>
+										<source src="audio.php?id=' . $i . '">
+										Your browser does not support the audio element for mp3 files
+									</audio>
+									<span>
+										<label>
+											<input type="radio" name="f'. $i . '" value="b">Bach
+										</label>
+										<label>
+											<input type="radio" name="f'. $i . '" value="e">Emi
+										</label>
+										<img id="i' . $i . '"></img>
+									</span>
+								</li>';
 				}
 			?>
 			</ul>
