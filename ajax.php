@@ -1,8 +1,7 @@
 <?php
-	include 'setSession.php';
-	header('Content-type: application/json');
-	$response_array = array();
 	if(isset($_POST['data'])) {
+		header('Content-type: application/json');		
+		include 'setSession.php';
 		$i = 0;
 		//$rightCount = 0;
 		foreach($_SESSION['data'] as $song) {
@@ -21,8 +20,8 @@
 		}
 		mysqli_query($con,"INSERT INTO results (data) VALUES ($rightCount)");
 		mysqli_close($con);*/
+		unset($_SESSION['data']);
+		setSession($songs);
+		echo json_encode($response_array);	
 	}
-	unset($_SESSION['data']);
-	setSession($songs);
-	echo json_encode($response_array);
 ?>

@@ -1,5 +1,4 @@
 $(document).ready(function() {
-	$("#msg").hide();
 	$("audio").on("play", function() {
 		$("audio").not(this).each(function(index, audio) {
 			audio.pause();
@@ -26,6 +25,7 @@ function submitQuiz() {
 			data: {data:data}
 		}).done(function(data) {
 			$('input:radio').attr('disabled', 'disabled');
+			$("audio").each(function() { this.pause(); });
 			var sum = 0;
 			$.each(data.wrong,function(){sum+=parseFloat(this) || 0;});
 			$("#msg").fadeOut().delay(900).queue(function(n){$(this).html("Score: "+(10-sum)+"/10 correct!");n();}).fadeIn();
@@ -44,17 +44,12 @@ function submitQuiz() {
 	}
 }
 function resetQuiz() {
-	$.ajax({
-		type: "GET",
-		url: "reset.php"
-	}).done(function() {
-		$('input:radio').removeAttr('checked').removeAttr('disabled');
-		$("#msg").delay(900).fadeOut().queue(function(n){$(this).html("");n();});
-		for(i=0; i<10;i++){
-			$("audio")[i].pause();
-			$("audio")[i].load();
-			$("#i"+i).delay(i*100).fadeOut();
-		}
-		$("#click").html("Resetting...").attr("onClick", "").delay(900).queue(function(n){$(this).attr("onClick", "submitQuiz()");$(this).html("Vote");n();});
-	});
+	$('input:radio').removeAttr('checked').removeAttr('disabled');
+	$("#msg").delay(900).fadeOut().queue(function(n){$(this).html("");n();});
+	for(i=0; i<10;i++){
+		$("audio")[i].pause();
+		$("audio")[i].load();
+		$("#i"+i).delay(i*100).fadeOut();
+	}
+	$("#click").html("Resetting...").attr("onClick", "").delay(900).queue(function(n){$(this).attr("onClick", "submitQuiz()");$(this).html("Vote");n();});
 }
