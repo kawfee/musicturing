@@ -42,7 +42,7 @@
 				</ul>
 				<p class="button"><a id="click" onClick="submitQuiz()">Vote</a></p>
 			</div>
-			<p class="cf" id="msg"></p>
+			<p id="msg"></p>
 		</div>
 	</body>
 </html>

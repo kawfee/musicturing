@@ -2,6 +2,10 @@ html, body {
 	margin:0;
 }
 
+p {
+	clear:both;
+}
+
 ul, li, audio, span, label, .button {
 	float:left;
 }
@@ -22,7 +26,7 @@ ul {
 
 li {
 	list-style-type:none;
-	margin:5px 0 5px 0;
+	margin:10px 0 5px 0;
 }
 
 img {
@@ -58,13 +62,10 @@ label {
 	height:20px;
 }
 
-ul, .main {
-	width:485px;
-}
-
 .main {
 	margin:0 auto;
 	text-align:center;
+	width:485px;
 }
 
 #click {
