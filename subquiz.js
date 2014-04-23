@@ -40,6 +40,7 @@ function submitQuiz() {
 			$("#click").html("Processing...").attr("onClick", "").delay(900).queue(function(n){$(this).attr("onClick", "resetQuiz()");$(this).html("Reset");n();});
 		});
 	} else {
+		$("#click").attr("onClick", "").delay(900).queue(function(n){$(this).attr("onClick", "submitQuiz()");n();});
 		$("#msg").fadeOut().html("Please try again. Make sure each question is answered.").fadeIn();
 	}
 }
