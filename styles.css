@@ -19,17 +19,17 @@ body {
 
 ul, li {
 	list-style-type:none;
-	width:500px;
 }
 
 ul {
 	margin:25px auto;
+	width:750px;
 }
 
 li {
 	text-align:left;
-	height:30px;
-	margin:15px 0;
+	margin:5px 0;
+	clear:both;
 }
 
 li img {
@@ -42,11 +42,14 @@ li img {
 li label {
 	padding:2.5px .5em;
 	line-height:25px;
+}
+
+audio, img, span, label {
 	float:left;
 }
 
-audio, img {
-	float:left;
+span {
+	margin-bottom:15px;
 }
 
 h1 {
@@ -56,16 +59,12 @@ h1 {
 	margin:0.25em 0;
 }
 
-.main {
-	padding:25px;
-}
-
 .wrapper {
 	box-shadow:0px 5px 25px rgba(64, 64, 64, 0.8);
-	max-width:1000px;
+	max-width:950px;
 	min-width:550px;
 	margin:0 auto;
-	margin-bottom:20px;
+	padding:25px;
 	background-color:#E7E7E7;
 }
 
@@ -90,3 +89,6 @@ h1 {
 	height:20px;
 }
 
+.cf {
+	clear:both;
+}
