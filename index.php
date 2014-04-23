@@ -17,6 +17,9 @@
 	<body>
 		<div class="wrapper">
 			<h1>Musical Turing Test</h1>
+			<div class="msg">
+				<p id="msg"></p>
+			</div>
 			<ul>
 			<?php
 				for($i = 0; $i < 10; $i++) {
@@ -32,14 +35,13 @@
 								<label>
 									<input type="radio" name="f'. $i . '" value="e">Emi
 								</label>
-								<img id="i' . $i . '"></img>
+								<span class="icon"><img id="i' . $i . '"></img></span>
 							</span>
 						</li>';
 				}
 			?>
 			</ul>
 			<p class="button cf"><a id="click" onClick="submitQuiz()">Vote</a></p>
-			<p id="msg"></p>
 			<div class="cf"></div>
 		</div>
 	</body>
