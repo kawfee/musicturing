@@ -10,6 +10,10 @@ $(document).ready(function() {
 			$('#overlay').fadeIn();
 		}
 	});
+	$('#close').on('click',function() {
+		console.log("CALLED");
+		$('#overlay').fadeOut();
+	});
 });
 
 function submitQuiz() {

@@ -43,8 +43,8 @@
 			</ul>
 			<p class="button cf"><a id="click" onClick="submitQuiz()">Vote</a></p>
 			<div class="cf"></div>
-			<div id="overlay"></div>
 		</div>
+		<div id="overlay"></div>		
 		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 		<script src="subquiz.js"></script>
 		<script src="messi.min.js"></script>
