@@ -12,7 +12,8 @@
 		<title>Musical Turing Test</title>
 		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 		<script src="subquiz.js"></script>
-		<link href="styles.css" rel="stylesheet" type="text/css">
+		<!--[if IE]><style>div.wrapper{min-width:750px;}</style><![endif]-->
+		<link rel="stylesheet" type="text/css" href="styles.css">
 	</head>
 	<body>
 		<div class="wrapper">
