@@ -10,14 +10,13 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<title>Musical Turing Test</title>
-		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-		<script src="subquiz.js"></script>
 		<!--[if IE]><style>div.wrapper{min-width:750px;}</style><![endif]-->
 		<link rel="stylesheet" type="text/css" href="styles.css">
+		<link rel="stylesheet" type="text/css" href="messi.min.css">
 	</head>
 	<body>
 		<div class="wrapper">
-			<h1>Musical Turing Test</h1>
+			<h1>Musical Turing Test <a id="info">[i]</a></h1>
 			<div class="msg">
 				<p id="msg"></p>
 			</div>
@@ -45,5 +44,8 @@
 			<p class="button cf"><a id="click" onClick="submitQuiz()">Vote</a></p>
 			<div class="cf"></div>
 		</div>
+		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+		<script src="subquiz.js"></script>
+		<script src="messi.min.js"></script>
 	</body>
 </html>

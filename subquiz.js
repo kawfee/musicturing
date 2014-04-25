@@ -1,8 +1,11 @@
 $(document).ready(function() {
-	$("audio").on("play", function() {
-		$("audio").not(this).each(function(index, audio) {
+	$('audio').on('play', function() {
+		$('audio').not(this).each(function(index, audio) {
 			audio.pause();
 		});
+	});
+	$('#info').on('click',function() {
+		Messi.alert('Here is some information.');
 	});
 });
 
@@ -20,37 +23,37 @@ function submitQuiz() {
 		$('input:radio[name=f9]:checked').val());
 	if($.grep(data, function(elem){ return elem === undefined;}).length < 1) {
 		$.ajax({
-			type: "POST",
-			url: "ajax.php",
+			type: 'POST',
+			url: 'ajax.php',
 			data: {data:data}
 		}).done(function(data) {
 			$('input:radio').attr('disabled', 'disabled');
-			$("audio").each(function() { this.pause(); });
+			$('audio').each(function() { this.pause(); });
 			var sum = 0;
 			$.each(data.wrong,function(){sum+=parseFloat(this) || 0;});
-			$("#msg").fadeOut().delay(900).queue(function(n){$(this).html("Score: "+(10-sum)+"/10 correct!");n();}).fadeIn();
+			$('#msg').fadeOut().delay(900).queue(function(n){$(this).html('Score: '+(10-sum)+'/10 correct!');n();}).fadeIn();
 			for(i=0; i<10;i++) {
 				if(data.wrong[i]==1) {
-					$("#i"+i).attr("src", "img/wrong.png");
+					$('#i'+i).attr('src', 'img/wrong.png');
 				} else {
-					$("#i"+i).attr("src", "img/right.png");
+					$('#i'+i).attr('src', 'img/right.png');
 				}
-				$("#i"+i).delay(i*100).fadeIn();
+				$('#i'+i).delay(i*100).fadeIn();
 			}
-			$("#click").html("Processing...").attr("onClick", "").delay(900).queue(function(n){$(this).attr("onClick", "resetQuiz()");$(this).html("Reset");n();});
+			$('#click').html('Processing...').attr('onClick', '').delay(900).queue(function(n){$(this).attr('onClick', 'resetQuiz()');$(this).html('Reset');n();});
 		});
 	} else {
-		$("#click").attr("onClick", "").delay(900).queue(function(n){$(this).attr("onClick", "submitQuiz()");n();});
-		$("#msg").fadeOut().html("Please try again. Make sure each question is answered.").fadeIn();
+		$('#click').attr('onClick', '').delay(900).queue(function(n){$(this).attr('onClick', 'submitQuiz()');n();});
+		$('#msg').fadeOut().html('Please try again. Make sure each question is answered.').fadeIn();
 	}
 }
 function resetQuiz() {
 	$('input:radio').removeAttr('checked').removeAttr('disabled');
-	$("#msg").delay(900).fadeOut().queue(function(n){$(this).html("");n();});
+	$('#msg').delay(900).fadeOut().queue(function(n){$(this).html('');n();});
 	for(i=0; i<10;i++){
-		$("audio")[i].pause();
-		$("audio")[i].load();
-		$("#i"+i).delay(i*100).fadeOut();
+		$('audio')[i].pause();
+		$('audio')[i].load();
+		$('#i'+i).delay(i*100).fadeOut();
 	}
-	$("#click").html("Resetting...").attr("onClick", "").delay(900).queue(function(n){$(this).attr("onClick", "submitQuiz()");$(this).html("Vote");n();});
+	$('#click').html('Resetting...').attr('onClick', '').delay(900).queue(function(n){$(this).attr('onClick', 'submitQuiz()');$(this).html('Vote');n();});
 }
