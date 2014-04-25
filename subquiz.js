@@ -1,11 +1,14 @@
 $(document).ready(function() {
-	$('audio').on('play', function() {
+	$('audio').on('play',function() {
 		$('audio').not(this).each(function(index, audio) {
 			audio.pause();
 		});
 	});
 	$('#info').on('click',function() {
-		Messi.alert('Here is some information.');
+		if(!$('.messi-box').length) {
+			Messi.alert('Lorem ipsum dolor sit amet, ei tollit sensibus liberavisse vix. Clita concludaturque ut pro, pro at congue diceret.');
+			$('#overlay').fadeIn();
+		}
 	});
 });
 
@@ -56,4 +59,8 @@ function resetQuiz() {
 		$('#i'+i).delay(i*100).fadeOut();
 	}
 	$('#click').html('Resetting...').attr('onClick', '').delay(900).queue(function(n){$(this).attr('onClick', 'submitQuiz()');$(this).html('Vote');n();});
+}
+
+function hideOverlay() {
+	$('#overlay').fadeOut();
 }
