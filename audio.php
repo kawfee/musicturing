@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	$filename = $_SESSION['data'][$_GET['id']][0] . '.mp3';
+	$filename = 'audio/'.$_SESSION['data'][$_GET['id']][0].'.mp3';
 	if(file_exists($filename)) {
 		header('Content-Type: audio/mpeg');
 		header('Cache-Control: no-cache');

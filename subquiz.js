@@ -31,9 +31,9 @@ function submitQuiz() {
 			$("#msg").fadeOut().delay(900).queue(function(n){$(this).html("Score: "+(10-sum)+"/10 correct!");n();}).fadeIn();
 			for(i=0; i<10;i++) {
 				if(data.wrong[i]==1) {
-					$("#i"+i).attr("src", "wrong.png");
+					$("#i"+i).attr("src", "img/wrong.png");
 				} else {
-					$("#i"+i).attr("src", "right.png");
+					$("#i"+i).attr("src", "img/right.png");
 				}
 				$("#i"+i).delay(i*100).fadeIn();
 			}
