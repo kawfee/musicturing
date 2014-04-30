@@ -46,7 +46,8 @@
 		</div>
 		<div id="overlay"></div>		
 		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-		<script src="subquiz.js"></script>
+		<script id="subquiz" src="subquiz.php"></script>
+		<?php /*<script src="subquiz.js"></script>*/ ?>
 		<script src="messi.min.js"></script>
 	</body>
 </html>

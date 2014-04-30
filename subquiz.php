@@ -1,3 +1,7 @@
+<?php
+	header("Content-type: application/javascript");
+	session_start();
+?>
 $(document).ready(function() {
 	$('audio').on('play',function() {
 		$('audio').not(this).each(function(index, audio) {
@@ -6,7 +10,8 @@ $(document).ready(function() {
 	});
 	$('#info').on('click',function() {
 		if(!$('.messi-box').length) {
-			Messi.alert('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam');
+			var msg = "<?php echo 'Answers to quiz:<br>1) '.$_SESSION['data'][0][0].'.mp3'.' ['.$_SESSION['data'][0][1].']<br>2) '.$_SESSION['data'][1][0].'.mp3'.' ['.$_SESSION['data'][1][1].']<br>3) '.$_SESSION['data'][2][0].'.mp3'.' ['.$_SESSION['data'][2][1].']<br>4) '.$_SESSION['data'][3][0].'.mp3'.' ['.$_SESSION['data'][3][1].']<br>5) '.$_SESSION['data'][4][0].'.mp3'.' ['.$_SESSION['data'][4][1].']<br>6) '.$_SESSION['data'][5][0].'.mp3'.' ['.$_SESSION['data'][5][1].']<br>7) '.$_SESSION['data'][6][0].'.mp3'.' ['.$_SESSION['data'][6][1].']<br>8) '.$_SESSION['data'][7][0].'.mp3'.' ['.$_SESSION['data'][7][1].']<br>9) '.$_SESSION['data'][8][0].'.mp3'.' ['.$_SESSION['data'][8][1].']<br>10) '.$_SESSION['data'][9][0].'.mp3 ['.$_SESSION['data'][9][1].']'; ?>";
+			Messi.alert(msg);
 			$('#overlay').fadeIn();
 		}
 	});
